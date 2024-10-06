@@ -1,19 +1,28 @@
 #maximum number of slot lines in our slot machine
 MAX_LINES = 3
+#maximum number of bet 
+MAX_BET = 10000
+#minimum number of bet
+MIN_BET = 100
+#minimum deposit amount
+MIN_DEPOSIT = 10000
+#maximum deposit amount
+MAX_DEPOSIT = 1000000
 
 #Function responsible for collecting user input for cashg deposit from user
 def deposit ():
     while True :
-        amount = input ("What amount of cash would you like to deposit? $")
+        amount = input ("What amount of cash would you like to deposit? ($10000 - 1000000) $")
         if amount.isdigit():
             #check if input is actually a number
             amount = int(amount)
             # check if the amount is greater than zero
-            if amount > 0:
+            if amount >= MIN_DEPOSIT and amount <= MAX_DEPOSIT:
                 # if all conditions are met, break the loop
                 break
             else:
-                print ("Amount must be greater than 0")
+                print (f"Amount must be between ${MIN_DEPOSIT} and ${MAX_DEPOSIT}.")
+                # if all conditions are met, break the loop
         else:
             print ("Please enter a cash number.")
     return amount
@@ -34,11 +43,30 @@ def get_number_of_lines():
         else:
             print ("Please enter a number.")
     return lines
+
+#Function to get the bet on each line \
+def get_bet():
+    while True :
+        amount = input ("What amount of cash would you like to bet? $")
+        if amount.isdigit():
+            #check if input is actually a number
+            amount = int(amount)
+            # check if the amount is with thw minimum and maximum bet
+            if MIN_BET <= amount <= MAX_BET:
+                # if all conditions are met, break the loop
+                break
+            else:
+                print (f"Amount must be between ${MIN_BET} and ${MAX_BET}.")
+        else:
+            print ("Please enter a cash number.")
+    return amount
     
 #function to rerun the game
 def main():
     balance = deposit()
     lines = get_number_of_lines()
-    print (balance, lines)
+    bet = get_bet()
+    total_bet = bet * lines
+    print (f"You are betting ${bet} on {lines} lines. Total bet is equal to ${total_bet}")
 
 main()
