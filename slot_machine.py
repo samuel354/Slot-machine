@@ -3,13 +3,13 @@ import random
 # maximum number of slot lines in our slot machine
 MAX_LINES = 3
 #maximum number of bet 
-MAX_BET = 100000
+MAX_BET = 10000
 #minimum number of bet
 MIN_BET = 100
 #minimum deposit amount
-MIN_DEPOSIT = 10000
+MIN_DEPOSIT = 1000
 #maximum deposit amount
-MAX_DEPOSIT = 1000000
+MAX_DEPOSIT = 10000
 #number of rows and columns on slot machine
 
 ROWS = 3
@@ -51,14 +51,16 @@ def print_slot_machine(columns):
     for row in range(len(columns[0])):
         for i, column in enumerate(columns):
             if i != len(columns) - 1:
-                print(column[row], "|")
+                print(column[row], end =" | ")
             else:
-                print(column[row])
+                print(column[row], end ="")
+                
+        print()
     
 #Function responsible for collecting user input for cashg deposit from user
 def deposit ():
     while True :
-        amount = input ("What amount of cash would you like to deposit? ($10000 - 1000000) $")
+        amount = input ("What amount of cash would you like to deposit? ($1000 - 10000) $")
         if amount.isdigit():
             #check if input is actually a number
             amount = int(amount)
@@ -121,5 +123,8 @@ def main():
         else:
             break
     print (f"You are betting ${bet} on {lines} lines. Total bet is equal to ${total_bet}")
+    
+    slots = get_slot_machine_spin(ROWS,COLS, symbol_count)
+    print_slot_machine(slots)
 
 main()
