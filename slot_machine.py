@@ -1,4 +1,6 @@
-#maximum number of slot lines in our slot machine
+#importing random to generate random numbers for slot machine 
+import random
+# maximum number of slot lines in our slot machine
 MAX_LINES = 3
 #maximum number of bet 
 MAX_BET = 100000
@@ -8,7 +10,51 @@ MIN_BET = 100
 MIN_DEPOSIT = 10000
 #maximum deposit amount
 MAX_DEPOSIT = 1000000
+#number of rows and columns on slot machine
 
+ROWS = 3
+COLS = 3
+
+#how many symbols in the slot machine
+symbol_count = {
+    
+    "A": 2,
+    "B": 4,
+    "C": 6,
+    "D": 8
+}
+
+#Function to actually enable slot machine to spin
+def get_slot_machine_spin(rows, cols, symbols):
+    all_symbols =[]
+    for symbol, symbol_count in symbols.items():
+        for _ in range(symbol_count):
+            all_symbols.append(symbol)
+    #in each column we generate the values inside teh column       
+    columns = [] #columns list
+    #make a copy of the list of symbols
+    current_symbols = all_symbols[:]
+    for col in range(cols):
+        column =[]
+        for row in range (rows):
+            value = random.choice(current_symbols) #choose from current symbols
+            current_symbols.remove(value) # remove value from the list
+            column.append(value) #add the value to our column
+            
+        columns.append(column) #Add column to columns list
+        
+    return columns
+
+#Print columns
+def print_slot_machine(columns):
+    #change print format(transpose column list)
+    for row in range(len(columns[0])):
+        for i, column in enumerate(columns):
+            if i != len(columns) - 1:
+                print(column[row], "|")
+            else:
+                print(column[row])
+    
 #Function responsible for collecting user input for cashg deposit from user
 def deposit ():
     while True :
