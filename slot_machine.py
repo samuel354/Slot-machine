@@ -24,6 +24,29 @@ symbol_count = {
     "D": 8
 }
 
+symbol_value = {
+    
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2
+}
+#function to check winnings 
+def check_winnings(columns, lines, bet, values):
+    winnings = 0
+    winning_lines = []
+    for line in range(lines):
+        #checck if symbols are the same on each column
+        symbol = columns[0][line]
+        for column in columns:
+            symbol_to_check= column[line]
+            if symbol != symbol_to_check:
+                break
+        else:
+            winnings += values[symbol] * bet
+            winning_lines.append(line + 1)
+    return winnings, winning_lines
+
 #Function to actually enable slot machine to spin
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols =[]
@@ -66,7 +89,7 @@ def deposit ():
             amount = int(amount)
             # check if the amount is greater than zero
             if amount >= MIN_DEPOSIT and amount <= MAX_DEPOSIT:
-                # if all conditions are met, break the loop
+                # if all conditions are met, break the loop 
                 break
             else:
                 print (f"Amount must be between ${MIN_DEPOSIT} and ${MAX_DEPOSIT}.")
@@ -126,5 +149,8 @@ def main():
     
     slots = get_slot_machine_spin(ROWS,COLS, symbol_count)
     print_slot_machine(slots)
-
+    winnings, winning_lines = check_winnings (slots, lines, bet, symbol_value)
+    print(f'You won ${winnings}')
+    print(f"You won on lines:", *winning_lines)
+    
 main()
