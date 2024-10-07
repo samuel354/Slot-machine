@@ -133,8 +133,7 @@ def get_bet():
     return amount
     
 #function to rerun the game
-def main():
-    balance = deposit()
+def spin(balance):
     lines = get_number_of_lines()
     #To make sure the bet is within the range of deposited amount
     while True :
@@ -152,5 +151,17 @@ def main():
     winnings, winning_lines = check_winnings (slots, lines, bet, symbol_value)
     print(f'You won ${winnings}')
     print(f"You won on lines:", *winning_lines)
+    return winnings - total_bet
+    
+def main():
+    balance = deposit()
+    while True:
+        print(f"Current balance is ${balance}")
+        answer = input("Press enter to spin (q to quit).") 
+        if answer == "q":
+            break
+        balance += spin(balance)
+        
+    print(f"You left with ${balance}")
     
 main()
