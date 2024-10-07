@@ -1,8 +1,7 @@
 # Slot-machine Project
 
 # Overview
-This project is a Python-based simulation of a slot machine, designed to mimic the mechanics of a real-life slot machine game. The aim is to provide a fun and interactive experience for users, while demonstrating my skills in Python programming, including the use of loops, functions, randomization, and user input handling. The project can be used as part of my resume to showcase my ability to develop small-scale Python projects.
-
+This project is a Python-based simulation of a slot machine, designed to mimic the mechanics of a real-life slot machine game. The aim is to provide a fun and interactive experience for users, while demonstrating my skills in Python programming, including the use of loops, functions, randomization, and user input handling. 
 
 # Features
  **User Interaction:** Users can input the amount they wish to bet, spin the reels, and see if they've won based on symbol combinations.
